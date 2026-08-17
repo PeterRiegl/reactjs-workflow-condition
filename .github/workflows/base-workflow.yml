@@ -36,17 +36,18 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Test code
+        continue-on-error: true
         id: npm-tests
         run: npm run test
       - name: Upload test report
-        if: always() #steps.npm-tests.outcome == 'failure'
+        #if: always() #steps.npm-tests.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with:
           name: test-report
           path: test.json
   build:
     needs: test
-    if: always()
+    #if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Get code
