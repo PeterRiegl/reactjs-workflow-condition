@@ -1,4 +1,4 @@
-name: Test and Build Workflow # ori
+name: Test and Build Workflow 
 on:
   push:
     branches:
@@ -39,7 +39,7 @@ jobs:
         id: npm-tests
         run: npm run test
       - name: Upload test report
-        #if: steps.npm-tests.outcome == 'failure'
+        if: steps.npm-tests.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with:
           name: test-report
